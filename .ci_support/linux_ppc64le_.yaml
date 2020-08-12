@@ -10,3 +10,5 @@ docker_image:
 - condaforge/linux-anvil-ppc64le
 pari:
 - '2.11'
+target_platform:
+- linux-ppc64le
