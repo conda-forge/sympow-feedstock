@@ -9,6 +9,8 @@ package:
 source:
   url: https://salsa.debian.org/science-team/sympow/-/archive/upstream/{{ version }}/sympow-upstream-{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    - patches/cross.diff
 
 build:
   number: 0
@@ -24,6 +26,7 @@ requirements:
     - automake
     - help2man
     - make
+    - pari  # [build_platform != target_platform]
   host:
     - pari
   run:
