@@ -1,0 +1,56 @@
+--- Configure.old	2021-06-01 10:10:52.000000000 -0700
++++ Configure	2021-06-01 10:13:55.000000000 -0700
+@@ -132,6 +132,7 @@
+     return 2
+ }
+ 
++if [ -z "SYMPOW_EXTRA_CFLAGS" ]; then
+ # Let move to 21st century and add GNU features (asprintf)
+ try_add_CFLAG '-std=gnu17' bypass
+ if [ $? -ne 0 ]; then
+@@ -165,6 +166,10 @@
+     try_add_CFLAG $FLAG && break
+ done
+ 
++else
++  CFLAGS=$SYMPOW_EXTRA_CFLAGS
++fi
++
+ # Check the actual FPU precision with our new flags.
+ CC_ARGS="$ORIGINALCFLAGS -O3 $CFLAGS config/fpubits1.c config/fpubits2.c fpu.c -o config/fpubits"
+ $CC $CC_ARGS
+@@ -177,6 +182,7 @@
+ 
+ echo "CFLAGS for SYMPOW: $CFLAGS"
+ 
++if [ -z "$SYMPOW_FPUBITS_IS_53" ]; then
+ config/fpubits
+ status=$?
+ if [ $status -eq 1 ]; then
+@@ -202,6 +208,7 @@
+ EOF
+ exit 1
+ fi
++fi
+ 
+ ## non-sage material
+ #######################################################################
+@@ -214,11 +221,17 @@
+     echo >&2 "$CC $CC_ARGS"
+     exit 1
+ fi
+-ENDIANTUPLE=$(config/endiantuple) && echo "#define ENDIANTUPLE \"$ENDIANTUPLE\"" >> $CONFIG
++
++if [ -z "$SYMPOW_ENDIANTUPLE" ]; then
++ENDIANTUPLE=$(config/endiantuple)
+ if [ -z "$ENDIANTUPLE" ]; then
+     echo >&2 "Error: could not determine the endian tuple"
+ 		exit 1
+ fi
++else
++ENDIANTUPLE=$SYMPOW_ENDIANTUPLE
++fi
++echo "#define ENDIANTUPLE \"$ENDIANTUPLE\"" >> $CONFIG
+ 
+ echo "ENDIANTUPLE for SYMPOW: $ENDIANTUPLE"
+ 
