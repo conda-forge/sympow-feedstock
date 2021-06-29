@@ -11,6 +11,6 @@ channel_targets:
 macos_machine:
 - arm64-apple-darwin20.0.0
 pari:
-- '2.11'
+- '2.13'
 target_platform:
 - osx-arm64
