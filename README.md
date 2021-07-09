@@ -3,7 +3,7 @@ About sympow
 
 Home: http://files.sagemath.org/spkg/upstream/sympow/index.html
 
-Package license: BSD-variant
+Package license: LicenseRef-BSD-like
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/sympow-feedstock/blob/master/LICENSE.txt)
 

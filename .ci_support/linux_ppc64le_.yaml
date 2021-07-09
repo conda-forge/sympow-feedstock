@@ -11,6 +11,6 @@ channel_targets:
 docker_image:
 - quay.io/condaforge/linux-anvil-ppc64le
 pari:
-- '2.13'
+- 2.13.* *_pthread
 target_platform:
 - linux-ppc64le
