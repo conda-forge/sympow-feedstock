@@ -10,10 +10,11 @@ source:
   url: https://salsa.debian.org/science-team/sympow/-/archive/upstream/{{ version }}/sympow-upstream-{{ version }}.tar.gz
   sha256: {{ sha256 }}
   patches:
-    - patches/cross.diff
+    - 0000-cross.patch
+    - 0001-Use-gp-from-environment.patch
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win]
   ignore_run_exports:
     - pari
