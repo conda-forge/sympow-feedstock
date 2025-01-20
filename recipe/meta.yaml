@@ -14,7 +14,7 @@ source:
     - 0001-Use-gp-from-environment.patch
 
 build:
-  number: 3
+  number: 4
   skip: true  # [win]
   ignore_run_exports:
     - pari
@@ -22,6 +22,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - libtool
     - autoconf
     - automake
