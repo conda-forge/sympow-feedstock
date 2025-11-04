@@ -1,6 +1,6 @@
 {% set name = "sympow" %}
-{% set version = "2.023.6" %}
-{% set sha256 = "c014cb8213ff887951b57e7372511ab3e4a96587f3a67bbcb5bd01e8cb3e5be9" %}
+{% set version = "4.0.1" %}
+{% set sha256 = "d491339997c27fcf58c59398a5ee5fe623da447010e04240c0fafe82322d9f77" %}
 
 package:
   name: {{ name }}
@@ -14,7 +14,7 @@ source:
     - 0001-Use-gp-from-environment.patch
 
 build:
-  number: 4
+  number: 0
   skip: true  # [win]
   ignore_run_exports:
     - pari
