@@ -1,0 +1,56 @@
+schema_version: 1
+
+context:
+  name: sympow
+  version: "4.0.1"
+  sha256: 7e422936da39823f5148475d5f855a18abc9522e09e9544ea454447779648ef2
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://gitlab.com/rezozer/forks/sympow/-/archive/v${{ version }}/sympow-v${{ version }}.tar.xz
+  sha256: ${{ sha256 }}
+  patches:
+    - 0000-cross.patch
+
+build:
+  number: 0
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - libtool
+    - autoconf
+    - automake
+    - help2man
+    - make
+    - if: build_platform != target_platform
+      then: pari
+  host:
+    - pari
+  run:
+    # new_data invokes PARI's GP
+    - pari
+  ignore_run_exports:
+    by_name:
+      - pari
+
+tests:
+  - script:
+      - sympow -help
+      - sympow -new_data 2
+
+about:
+  license: LicenseRef-BSD-like
+  license_file: ${{ SRC_DIR }}/COPYING
+  summary: A package to compute special values of symmetric power elliptic curve L-functions
+  homepage: http://files.sagemath.org/spkg/upstream/sympow/index.html
+
+extra:
+  recipe-maintainers:
+    - isuruf
+    - saraedum
